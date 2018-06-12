@@ -27,6 +27,13 @@ npm run build
 
 ```
 
+## Test
+```
+
+npm test -- -u
+
+```
+
 #### Notes:
 * Running the build bundles all your updates to ```bundle.js``` and ```bundle.css``` in dist folder.
 * If you insist to automate the build upon appending changes to files, use ```webpack --watch```
@@ -39,3 +46,5 @@ npm run build
 * JavaScript (ES6)
 * HTML5
 * SASS
+* Jest
+* Enzyme

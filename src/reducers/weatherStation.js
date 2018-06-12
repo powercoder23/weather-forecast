@@ -11,16 +11,12 @@ export default function reducer(state = {
 				data: action.payload,
 				status: "success"
 			};
-			break;
 		}
 		case FETCH_DATA_REJECTED: {
 			return {
 				...state,
 				status: "failed"
 			};
-
-			console.error(`Could not fetch the data from webservice. ${action.payload}.`); // eslint-disable-line
-			break;
 		}
 	}
 

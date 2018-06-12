@@ -5,12 +5,18 @@ import { fetchData } from "./actions/weatherStation";
 
 import WeatherForecast from './components/WeatherForecast';
 
-@connect(store => {
+const mapStateToProps = function (store){
 	return {
 		forecast: store.weatherStation.data
 	}
-})
-export default class App extends Component {
+}
+
+// @connect(store => {
+// 	return {
+// 		forecast: store.weatherStation.data
+// 	}
+// })
+export  class App extends Component {
 
 	componentDidMount() {
 		const detectLocation = new Promise((resolve, reject) => {
@@ -19,14 +25,13 @@ export default class App extends Component {
 					resolve(position.coords);
 				}, (error) => {
 					if (error.code === error.PERMISSION_DENIED) {
-						console.error("Error detecting location.");
+						reject("Error detecting location.");
 					}
 				});
 			}
 		});
 
 		detectLocation.then((location) => {
-			console.log(location)
 			this.props.dispatch(fetchData(location));
 		}).catch(() => {
 			this.props.dispatch(fetchData("london"));
@@ -49,3 +54,5 @@ export default class App extends Component {
 		);
 	}
 }
+
+export default connect(mapStateToProps)(App)

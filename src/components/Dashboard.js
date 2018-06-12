@@ -2,15 +2,25 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchData } from "../actions/weatherStation";
 
-@connect((store) => {
+
+const mapStateToProps = function(store){
+	console.log(store)
 	return {
 		status: store.weatherStation.status
 	}
-})
-export default class Dashboard extends Component {
+	
+}
+
+// @connect((store) => {
+// 	return {
+// 		status: store.weatherStation.status
+// 	}
+// })
+export class Dashboard extends Component {
 
 	_updateCity = () => {
 		const city = this.__cityInput.value;
+		console.log(this)
 		city.length !== 0 ? this.props.dispatch(fetchData(city)) : null;
 	}
 
@@ -53,3 +63,5 @@ export default class Dashboard extends Component {
 		);
 	}
 }
+
+export default connect(mapStateToProps)(Dashboard)
